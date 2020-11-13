@@ -1,0 +1,27 @@
+import os,time
+directory="atomation_of_a_flask_app"
+path = os.path.join(directory)
+os.mkdir(path)
+f = open("atomation_of_a_flask_app/app.py", "w")
+code = "from flask import Flask \n\napp = Flask(__name__)\n\n@app.route('/')\ndef index():\n	return 'Hello World'\n\nif __name__ == '__main__':\n	app.run(debug=True)\n"
+f.write(code)
+f.close()
+proc = open("atomation_of_a_flask_app/requirements.txt", "w")
+proc.write("flask\ngunicorn")
+proc.close()
+
+proc1 = open("atomation_of_a_flask_app/Procfile", "w")
+proc1.write("web: gunicorn app:app")
+proc1.close()
+#os.popen("python atomation_of_a_flask_app/app.py",mode="w")
+os.system("cd atomation_of_a_flask_app")
+time.sleep(2)
+os.system("cd atomation_of_a_flask_app && git init")
+time.sleep(2)
+os.system("cd atomation_of_a_flask_app && heroku create hardik-test-app")
+time.sleep(20)
+os.system("cd atomation_of_a_flask_app && git add .")
+time.sleep(2)
+os.system('cd atomation_of_a_flask_app && git commit -m "First Commit"')
+time.sleep(5)
+os.system("cd atomation_of_a_flask_app && git push heroku master")
